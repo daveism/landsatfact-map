@@ -164,8 +164,9 @@
       <div id="splashScreenContent"></div>
     </div>
     <script>
-    try {$.ga.trackEvent}
-            alert('is function');
+    try {$.ga.trackEvent}(
+      alert('is function');
+    )
     catch(err) {
         alert('is not function');
       }
