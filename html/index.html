@@ -164,13 +164,15 @@
       <div id="splashScreenContent"></div>
     </div>
     <script>
+    var eventAdded = false;
     try {
       $.ga.trackEvent
-      alert('is function');
+      eventAdded = true;
     }
     catch(err) {
-        alert('is not function');
+        eventAdded = false;
       }
+      alert(eventAdded);
     </script>
   </body>
 </html>
