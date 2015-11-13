@@ -166,6 +166,8 @@
     <script>
 
 
+    //track find area search when user click enter this forces serach
+    //  records the text the input
     $( "#txtFindArea input#address_field" ).keyup(function(event) {
       if (event.which === 13){
         $.ga.trackEvent({
@@ -176,7 +178,9 @@
       }
     });
 
-
+    //track find area search when user click the serarch button
+    //  this also forces serach
+    //  records the text the input
     $( "#txtFindArea  #address_lookup img" ).click(function(event) {
       $.ga.trackEvent({
         category : 'Find Area',
@@ -185,8 +189,20 @@
       });
     });
 
+    //track change in base map
+    //  records the text of the option
+    $( "#mapBase  #baseCombo" ).change(function(event) {
+      $.ga.trackEvent({
+        category : 'Base Map',
+        action : 'Change',
+        label : $('#mapBase  #baseCombo option:selected').text()
+      });
+    });
+
+    //track nav bar clicks (zoom,pan,identify,toogles)
+    //  records the tittle attribute as the label
     $('.header-bar .header-bar img.icon').gaTrackEvent({
-      category: 'nav bar',
+      category: 'Nav Bar',
       action: 'click',
       useLabel: true,
       labelAttribute: "title",
@@ -249,22 +265,8 @@
       event: 'click'
     });
 
-    // //track find area search
-    // //  records the text the input
-    // $("#txtFindArea").gaTrackEvent({
-    //   category: 'Find Area',
-    //   action: 'Enter',
-    //   useLabel: false,
-    //   label: function(){
-    //     //event.which = event.which || event.keyCode;
-    //     //if(event.keyCode === 13) {
-    //     //  return  $(this).text();
-    //     //}
-    //     return $(this).text();
-    //   },
-    //   useEvent: true,
-    //   event: 'click'
-    // });
+
+
 
     </script>
   </body>
