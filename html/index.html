@@ -43,6 +43,14 @@
       $('document').ready(function() {
           seldon.init("http://landsatfact-data-dev.nemac.org/landsatfact_config.xml","EPSG:900913");
       });
+      function analytics_custom_event_tracker(name, event, label)
+      {
+          if (typeof ga === 'function')
+          {
+              return ga('send', 'event', name, event, label);
+          }
+      }      
+
     </script>
 
     <!--[if IE]>
@@ -237,9 +245,11 @@
       action: 'Enter',
       useLabel: true,
       label: function(){
-        if(e.which == 13) {
-          return  $(this).text();
-        }
+        //event.which = event.which || event.keyCode;
+        //if(event.keyCode === 13) {
+        //  return  $(this).text();
+        //}
+        retur event;
       },
       useEvent: true,
       event: 'onkeyup'
