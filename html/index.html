@@ -166,6 +166,7 @@
     <script>
 
     function setLabelwithReturn(elem,e,label) {
+      alert(e);
       if(e.keyCode == 13){
         $("#id_of_button").attr("data-ga-label", label)
         $("#id_of_button").click();
