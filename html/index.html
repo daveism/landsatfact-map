@@ -33,6 +33,7 @@
     <script type="text/javascript" src="libs/seldon/listAccordion.js"></script>
     <script type="text/javascript" src="libs/seldon/findArea.js"></script>
     <script type="text/javascript" src="areas.js"></script>
+    <script type="text/javascript" src="libs/seldon/libs/jquery-building-blocks-googleanalytics/building-blocks-googleanalytics.js"></script>
     <script type="text/javascript" src="libs/seldon/seldon.js"></script>
 
     <link rel="stylesheet" type="text/css" href="libs/seldon/seldon.css" />
@@ -227,6 +228,21 @@
       label: function(){return $(this).text();},
       useEvent: true,
       event: 'click'
+    });
+
+    //track find area search
+    //  records the text the input
+    $("#txtFindArea input#address_field").gaTrackEvent({
+      category: 'Find Area',
+      action: 'Enter',
+      useLabel: true,
+      label: function(){
+        if(e.which == 13) {
+          return  $(this).text();
+        }
+      },
+      useEvent: true,
+      event: 'onkeyup'
     });
     </script>
   </body>
