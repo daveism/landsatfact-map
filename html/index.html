@@ -164,6 +164,15 @@
       <div id="splashScreenContent"></div>
     </div>
     <script>
+
+    function setLabelwithReturn(elem,e,label) {
+      if(e.keyCode == 13){
+        $("#id_of_button").attr("data-ga-label", label)
+        $("#id_of_button").click();
+        return true;
+      }
+
+    }
     //track nav bar clicks (zoom,pan,identify,toogles)
     //  records the tittle attribute as the label
     $('.header-bar .header-bar img.icon').gaTrackEvent({
@@ -232,10 +241,10 @@
 
     //track find area search
     //  records the text the input
-    $("#txtFindArea input#address_field").gaTrackEvent({
+    $("#txtFindArea").gaTrackEvent({
       category: 'Find Area',
       action: 'Enter',
-      useLabel: true,
+      useLabel: false,
       label: function(){
         //event.which = event.which || event.keyCode;
         //if(event.keyCode === 13) {
@@ -243,6 +252,17 @@
         //}
         return $(this).text();
       },
+      useEvent: true,
+      event: 'click'
+    });
+
+    //track find area search
+    //  records the text the input
+    $("#txtFindArea input#address_field").gaTrackEvent({
+      category: 'Find Area',
+      action: 'keypress Ignore',
+      useLabel: false,
+      label: setLabelwithReturn($(this),event,$(this).text()),
       useEvent: true,
       event: 'onkeyup'
     });
