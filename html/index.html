@@ -165,17 +165,26 @@
     </div>
     <script>
 
-    function setLabelwithReturn(elem,e,label) {
-      alert(e);
-      if(e.keyCode == 13){
-        $("#id_of_button").attr("data-ga-label", label)
-        $("#id_of_button").click();
-        return true;
-      }
 
-    }
-    //track nav bar clicks (zoom,pan,identify,toogles)
-    //  records the tittle attribute as the label
+    $( "#txtFindArea input#address_field" ).keyup(function(event) {
+      if (event.which === 13){
+        $.ga.trackEvent({
+          category : 'Find Area',
+          action : 'Search Enter',
+          label : $(this).val()
+        });
+      }
+    });
+
+
+    $( "#txtFindArea  #address_lookup img" ).click(function(event) {
+      $.ga.trackEvent({
+        category : 'Find Area',
+        action : 'Search Button',
+        label : $( "#txtFindArea input#address_field" ).val()
+      });
+    });
+
     $('.header-bar .header-bar img.icon').gaTrackEvent({
       category: 'nav bar',
       action: 'click',
@@ -240,33 +249,23 @@
       event: 'click'
     });
 
-    //track find area search
-    //  records the text the input
-    $("#txtFindArea").gaTrackEvent({
-      category: 'Find Area',
-      action: 'Enter',
-      useLabel: false,
-      label: function(){
-        //event.which = event.which || event.keyCode;
-        //if(event.keyCode === 13) {
-        //  return  $(this).text();
-        //}
-        return $(this).text();
-      },
-      useEvent: true,
-      event: 'click'
-    });
+    // //track find area search
+    // //  records the text the input
+    // $("#txtFindArea").gaTrackEvent({
+    //   category: 'Find Area',
+    //   action: 'Enter',
+    //   useLabel: false,
+    //   label: function(){
+    //     //event.which = event.which || event.keyCode;
+    //     //if(event.keyCode === 13) {
+    //     //  return  $(this).text();
+    //     //}
+    //     return $(this).text();
+    //   },
+    //   useEvent: true,
+    //   event: 'click'
+    // });
 
-    //track find area search
-    //  records the text the input
-    $("#txtFindArea input#address_field").gaTrackEvent({
-      category: 'Find Area',
-      action: 'keypress Ignore',
-      useLabel: false,
-      label: setLabelwithReturn($(this),event,$(this).text()),
-      useEvent: true,
-      event: 'onkeyup'
-    });
     </script>
   </body>
 </html>
