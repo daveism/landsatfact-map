@@ -43,14 +43,6 @@
       $('document').ready(function() {
           seldon.init("http://landsatfact-data-dev.nemac.org/landsatfact_config.xml","EPSG:900913");
       });
-      function analytics_custom_event_tracker(name, event, label)
-      {
-          if (typeof ga === 'function')
-          {
-              return ga('send', 'event', name, event, label);
-          }
-      }      
-
     </script>
 
     <!--[if IE]>
