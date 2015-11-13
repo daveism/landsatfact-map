@@ -115,14 +115,14 @@
 
     <div id="map"></div>
 
-    <div id="footer">      
+    <div id="footer">
       <div id="links">
         <a href="http://www.landsatfact.com/" class="link last" target="_blank">www.landsatfact.com</a>
       </div>
       <div id="latLonTracker" class="hidden-phone-portrait hidden-phone-landscape hidden-tablet-portrait"></div>
     </div>
 
-    <div title="Map Layers" id="layerPickerDialog"></div>    
+    <div title="Map Layers" id="layerPickerDialog"></div>
 
     <div title="Map Tools" id="mapToolsDialog">
       <div id="mapToolsAccordion">
@@ -149,7 +149,7 @@
             <span>&nbsp&nbsp&nbsp</span><input class="mask-toggle" type="checkbox" name="CDLShrubScrub" id="CDLShrubScrub" value="MaskForCDLShrubScrub" data-mask-parent="MaskForCDLForest"/><label for="CDLShrubScrub">Show CDL Shrub/Scrub</label><br/>
             <span>&nbsp&nbsp&nbsp</span><input class="mask-toggle" type="checkbox" name="CDLWoodyWetlands" id="CDLWoodyWetlands" value="MaskForCDLWoodyWetlands" data-mask-parent="MaskForCDLForest"/><label for="CDLWoodyWetlands">Show CDL Woody Wetlands</label><br/>
           </div>
-          
+
         </div>
         <h3>Share this Map</h3>
         <div><textarea class="shareMapUrl" readonly="true"></textarea></div>
@@ -162,5 +162,72 @@
     <div id="splashScreenContainer" title="LandsatFACT Map Viewer">
       <div id="splashScreenContent"></div>
     </div>
+    <script>
+    //track nav bar clicks (zoom,pan,identify,toogles)
+    //  records the tittle attribute as the label
+    $('.header-bar .header-bar img.icon').gaTrackEvent({
+      category: 'nav bar',
+      action: 'click',
+      useLabel: true,
+      labelAttribute: "title",
+      useEvent: true,
+      event: 'click'
+    });
+
+    //track base layer toggles when check box clicked
+    // records the for attribute as the label
+    $("#mapToolsDialog label[for^='chk']").gaTrackEvent({
+      category: 'Map Tools',
+      action: 'Toogle',
+      useLabel: true,
+      labelAttribute: "for",
+      useEvent: true,
+      event: 'click'
+    });
+
+    //track base layer toggles when the label for the check box is clickded
+    //  records the id attribute as the label
+    $("#mapToolsDialog input").gaTrackEvent({
+      category: 'Map Tools',
+      action: 'Toogle',
+      useLabel: true,
+      labelAttribute: "id",
+      useEvent: true,
+      event: 'click'
+    });
+
+    //track Layer Picker toggles when check box clicked
+    // records the for attribute as the label
+    $("#layerPickerDialog label[for^='chk']").gaTrackEvent({
+      category: 'Base Layer',
+      action: 'Toogle',
+      useLabel: true,
+      labelAttribute: "for",
+      useEvent: true,
+      event: 'click'
+    });
+
+    //track Layer Picker toggles when the label for the check box is clickded
+    //  records the id attribute as the label
+    $("#layerPickerDialog input").gaTrackEvent({
+      category: 'Base Layer',
+      action: 'Toogle',
+      useLabel: true,
+      labelAttribute: "id",
+      useEvent: true,
+      event: 'click'
+    });
+
+    //track accordion header expand and un-expand
+    //  records the text of the header (h3)
+    $("h3.ui-accordion-header").gaTrackEvent({
+      category: 'Base Layer',
+      action: 'Toggle Accordion',
+      useLabel: true,
+      label: function(){return $(this).text();},
+      useEvent: true,
+      event: 'click'
+    });
+    </script>
   </body>
 </html>
