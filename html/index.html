@@ -167,7 +167,8 @@
 
     //track click in sharemap url
     //  records the text of the textarea
-    $( ".shareMapUrl" ).click(function(event) {
+    $('.shareMapUrl').bind('input propertychange', function() {
+    // $( ".shareMapUrl" ).click(function(event) {
       alert( $( ".shareMapUrl" ).val() )
       // $.ga.trackEvent({
       //   category : 'Share Map URL',
